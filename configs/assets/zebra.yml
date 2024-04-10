@@ -1,0 +1,13 @@
+apiVersion: cloud.nicklasfrahm.dev/v1alpha1
+kind: Asset
+metadata:
+  name: zebra
+spec:
+  bmc: {}
+  interfaces:
+    enp3s0:
+      mac: "10:7b:44:17:b4:78"
+    enp7s0f0:
+      mac: "00:26:55:d4:50:74"
+    enp7s0f1:
+      mac: "00:26:55:d4:50:75"
