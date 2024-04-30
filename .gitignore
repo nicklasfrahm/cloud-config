@@ -1,0 +1,6 @@
+# Ignore disk images.
+*.iso
+*.cow2
+
+# Ignore built binaries.
+bin/
