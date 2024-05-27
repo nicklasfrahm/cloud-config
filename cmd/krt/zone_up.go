@@ -23,9 +23,8 @@ working directory.`,
 	ArgAliases: []string{"host"},
 	ValidArgs:  []string{"host"},
 	RunE: func(cmd *cobra.Command, args []string) error {
-
-		// TODO: Check if a temporal server can be found. If not, temporarily start one.
-
-		return zone.NewWorker()
+		return zone.Up(zone.Zone{
+			Name: args[0],
+		})
 	},
 }
