@@ -1,0 +1,49 @@
+name: Deploy Kubernetes cluster
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * *"
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/kubernetes.yml
+      - deploy/k3se/**
+
+jobs:
+  cluster:
+    name: Cluster
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        environment:
+          # Infrastructure clusters.
+          - mon0
+    environment:
+      name: ${{ matrix.environment }}
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - name: Install private key
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+
+      - name: Deploy k3s
+        uses: nicklasfrahm/k3se@main
+        with:
+          command: up deploy/k3se/${{ matrix.environment }}.yaml
+
+      - name: Create secret for kubeconfig
+        run: |
+          echo ${{ secrets.PERSONAL_ACCESS_TOKEN }} | gh auth login --with-token
+          gh secret set KUBECONFIG -r ${{ github.repository }} -e ${{ matrix.environment }} < ~/.kube/config
+
+      - name: Uninstall private key
+        run: rm ~/.ssh/id_ed25519
