@@ -4,8 +4,11 @@ metadata:
   name: amber
 spec:
   bmc:
-    type: ipmi
     interface: bmc
+    power:
+      type: IPMI
+      parameters:
+        driver: IPMI2
   interfaces:
     bmc:
       mac: "cc:46:d6:58:9d:ce"
