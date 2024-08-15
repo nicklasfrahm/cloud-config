@@ -1,0 +1,8 @@
+apiVersion: cloud.nicklasfrahm.dev/v1alpha1
+kind: Machine
+metadata:
+  name: aar3swt01
+spec:
+  interfaces:
+    mgmt0:
+      mac: "e0:2f:6d:44:31:60"
