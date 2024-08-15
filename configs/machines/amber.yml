@@ -1,0 +1,14 @@
+apiVersion: cloud.nicklasfrahm.dev/v1alpha1
+kind: Machine
+metadata:
+  name: amber
+spec:
+  bmc:
+    type: ipmi
+    interface: bmc
+  interfaces:
+    bmc:
+      mac: "cc:46:d6:58:9d:ce"
+    enp1s0f0:
+      mac: "cc:46:d6:58:9d:d4"
+      pxe: true
