@@ -1,0 +1,17 @@
+apiVersion: cloud.nicklasfrahm.dev/v1alpha1
+kind: Machine
+metadata:
+  name: coral
+spec:
+  bmc:
+    interface: bmc
+    power:
+      type: IPMI
+      parameters:
+        driver: IPMI2
+  interfaces:
+    bmc:
+      mac: "ec:b1:d7:80:3e:86"
+    eth0:
+      mac: "ec:b1:d7:74:27:7c"
+      pxe: true
