@@ -1,0 +1,8 @@
+stores:
+  yaml:
+    indent: 2
+
+creation_rules:
+  - path_regex: .*\.ya?ml$
+    encrypted_regex: '^(data|stringData)$'
+    age: age1764fcxh4ea0vt0h9vghfjqpt0uvut6f8qzrwzpsmsdt2j37f495szca6rw

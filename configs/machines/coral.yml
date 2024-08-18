@@ -9,9 +9,12 @@ spec:
       type: IPMI
       parameters:
         driver: IPMI2
+      credentials:
+        secretRef:
+          name: coral-ipmi
   interfaces:
     bmc:
-      mac: "ec:b1:d7:80:3e:86"
+      mac: ec:b1:d7:80:3e:86
     eth0:
-      mac: "ec:b1:d7:74:27:7c"
+      mac: ec:b1:d7:74:27:7c
       pxe: true

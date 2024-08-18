@@ -6,4 +6,4 @@
 bin/
 
 # Ignore private keys.
-*.key
+*.agekey
