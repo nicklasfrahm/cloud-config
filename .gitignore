@@ -4,3 +4,6 @@
 
 # Ignore built binaries.
 bin/
+
+# Ignore private keys.
+*.key
