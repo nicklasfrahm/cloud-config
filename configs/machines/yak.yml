@@ -1,0 +1,11 @@
+apiVersion: cloud.nicklasfrahm.dev/v1alpha1
+kind: Machine
+metadata:
+  name: yak
+  annotations:
+    cloud.nicklasfrahm.dev/vendor: "raxda"
+    cloud.nicklasfrahm.dev/model: "rockpi-x"
+spec:
+  interfaces:
+    enp1s0:
+      mac: "00:e0:4c:88:00:f1"
