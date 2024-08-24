@@ -7,3 +7,6 @@ bin/
 
 # Ignore private keys.
 *.agekey
+
+# Ignore unencrypted BMC credentials.
+configs/**/*-bmc.yml
