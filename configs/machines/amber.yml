@@ -2,6 +2,9 @@ apiVersion: cloud.nicklasfrahm.dev/v1alpha1
 kind: Machine
 metadata:
   name: amber
+  annotations:
+    cloud.nicklasfrahm.dev/vendor: "cisco"
+    cloud.nicklasfrahm.dev/model: "ucs-c220-m4"
 spec:
   bmc:
     interface: bmc
@@ -9,6 +12,9 @@ spec:
       type: IPMI
       parameters:
         driver: IPMI2
+      credentials:
+        secretRef:
+          name: amber-bmc
   interfaces:
     bmc:
       mac: "cc:46:d6:58:9d:ce"

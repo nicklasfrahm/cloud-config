@@ -2,6 +2,9 @@ apiVersion: cloud.nicklasfrahm.dev/v1alpha1
 kind: Machine
 metadata:
   name: denim
+  annotations:
+    cloud.nicklasfrahm.dev/vendor: "hpe"
+    cloud.nicklasfrahm.dev/model: "proliant-dl360-gen9"
 spec:
   bmc:
     interface: bmc
@@ -11,7 +14,7 @@ spec:
         driver: IPMI2
       credentials:
         secretRef:
-          name: denim-ipmi
+          name: denim-bmc
   interfaces:
     bmc:
       mac: ec:b1:d7:80:4e:ca

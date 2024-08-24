@@ -2,6 +2,9 @@ apiVersion: cloud.nicklasfrahm.dev/v1alpha1
 kind: Machine
 metadata:
   name: zebra
+  annotations:
+    cloud.nicklasfrahm.dev/vendor: "nicklasfrahm"
+    cloud.nicklasfrahm.dev/model: "asus-b250m-i3-7100"
 spec:
   interfaces:
     enp3s0:

@@ -1,10 +1,10 @@
 apiVersion: cloud.nicklasfrahm.dev/v1alpha1
 kind: Machine
 metadata:
-  name: coral
+  name: blue
   annotations:
-    cloud.nicklasfrahm.dev/vendor: "hpe"
-    cloud.nicklasfrahm.dev/model: "proliant-dl360-gen9"
+    cloud.nicklasfrahm.dev/vendor: "cisco"
+    cloud.nicklasfrahm.dev/model: "ucs-c220-m4"
 spec:
   bmc:
     interface: bmc
@@ -14,10 +14,10 @@ spec:
         driver: IPMI2
       credentials:
         secretRef:
-          name: coral-bmc
+          name: blue-bmc
   interfaces:
     bmc:
-      mac: ec:b1:d7:80:3e:86
-    eth0:
-      mac: ec:b1:d7:74:27:7c
+      mac: "e4:aa:5d:41:bf:98"
+    enp1s0f0:
+      mac: "e4:aa:5d:41:bf:9e"
       pxe: true

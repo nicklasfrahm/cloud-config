@@ -2,6 +2,9 @@ apiVersion: cloud.nicklasfrahm.dev/v1alpha1
 kind: Machine
 metadata:
   name: aar3swt01
+  annotations:
+    cloud.nicklasfrahm.dev/vendor: "cisco"
+    cloud.nicklasfrahm.dev/model: "n3k-c3048tp-1ge"
 spec:
   interfaces:
     mgmt0:
