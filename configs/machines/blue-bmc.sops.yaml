@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: blue-bmc
+type: Opaque
+stringData:
+  username: ENC[AES256_GCM,data:s8lf5IU=,iv:IeC3aKbE0/F+j1MfVnEVrbSqA7x/fPURrV5F+aVOZhk=,tag:1MHrsUpsKTyfbcAyW8e1Yw==,type:str]
+  password: ENC[AES256_GCM,data:wG5vMqGdrBQNcnF97xecqSSxfik=,iv:PpOIrN0potaFyD5pdUj+1Y/6JOAsZlS9vZ5l8RlLqrE=,tag:0PFscGJhjOPW0fjkrgIVeA==,type:str]
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1764fcxh4ea0vt0h9vghfjqpt0uvut6f8qzrwzpsmsdt2j37f495szca6rw
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBHaTdpRkx3QXpOdzNTM094
+        QmtVMm40MTM1d1UwdjVDclBCMHo1elM0TEVjClhXMHR3YmEya3VyTnRzMFVxQ0Fx
+        QnAzOVN5emFYdHhQcG1UU0NzN3dDSm8KLS0tIGtsS0NLM2l6NE03SFFuOWFxRTJi
+        OEp0c1ljUjdPbVNLOFBobUpXRlFIcEkKBuxSmVL65D/wfhXR0fsMBCFurlQReaVR
+        cCQxRKuVD1m6RrfpBhaglY67P07YSJz7D399aRGaQLupfFifmxtoKQ==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2024-09-27T19:44:12Z"
+  mac: ENC[AES256_GCM,data:VU5Eo/ZQBPRpk4g93CCeFdQwJ6M7vtAWhfo18fbrdPt/muUZyZGXhJWgi/7oAD3fEyg19wHECM2/Z85MT8kpsR/qW3zHdzd2jqhUWPGHe6ClXiIKCrjEIsQcr984gKn61jVY3fVyEeaZXeJh2D1jQLBxrjwCvzKd6Wr3mRPT9aI=,iv:/ve31pyCdiUxmCrrNNKxtBAyFKlPags4uvtxBk/NZ7E=,tag:ErEd+61/1lyBgB6xZphiNQ==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  version: 3.9.0

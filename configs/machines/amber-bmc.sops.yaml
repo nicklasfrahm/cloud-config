@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: amber-bmc
+type: Opaque
+stringData:
+  username: ENC[AES256_GCM,data:zsmC5a0=,iv:k8HWW1DQNEZh1aJEmXwJjyJfrJySCPX+cXpEhj05RNk=,tag:2YLk92622Kouxue/9ox9Sw==,type:str]
+  password: ENC[AES256_GCM,data:Krs3exefM/Zdno+EecmDq4ra0QI=,iv:59E16GdvDaJTrMHS6VzRoSa6xwAcgtMvw1mJMI91Vhc=,tag:KElL6KJm6FaKvEXyfHbtiw==,type:str]
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1764fcxh4ea0vt0h9vghfjqpt0uvut6f8qzrwzpsmsdt2j37f495szca6rw
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBoWHhPZnI3amF6d2twK0RF
+        NnM4OGVSVEM0QWM1eGFVcU1pV216SFVLUlJnCkNTelViMlA3OW94TUhrT2FFVXJJ
+        QUZqMnVTY2JjRlFTYmhXUHhPU00wZTAKLS0tIGJrVUtyOG5hbStWb1Nlamlxa3RB
+        aDBZSHM2S3JZRmt2aWx1Tk5QNUhKNW8KKbfZjaBIIu3V56aOzVuhKWyOy59ZLMh3
+        dvaS7DfyDgGsLMGZEVLgFxs27t6mCy/J/pQgGVxStDbT+L8bQg7vaQ==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2024-09-27T19:44:12Z"
+  mac: ENC[AES256_GCM,data:VW7he6AySi9hnG4c83v6zs09Dsnl9PWijzzhaV4swROz8t1076hZssUWrD33wDszw/4ENpsqW6tzmiEARwiJgk0PxV88xs+t0aHzuz8POWQ9W9s6LbUgwVifiaZUi0+5WOILvmClNm2fKH0YAFLindF6N/1LL7Jrno4SYaG93qU=,iv:DQHN0xVQeXGB7AVK8G9emuEKa/sMgoNYbMvqM2M5Bag=,tag:gSjHaykZTmyZCrf5rc0zJw==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  version: 3.9.0

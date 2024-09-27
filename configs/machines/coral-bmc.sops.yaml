@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: coral-bmc
+type: Opaque
+stringData:
+  username: ENC[AES256_GCM,data:HCWuUW8=,iv:vhSX8A2W/QBZIkVDKk0ifpi9pvB8bHG3bU5TJH4asE8=,tag:olIHaYQ7i0Lh9S60dWRA0w==,type:str]
+  password: ENC[AES256_GCM,data:Q4BTk4zmILOKlmuRbWOrQ9oKYg==,iv:SqJTjFJVdtKuk5DkD4sTR07unMn2ijXe6E1NPbb5m+M=,tag:gLYX74lgY0u/E62mHD69iQ==,type:str]
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1764fcxh4ea0vt0h9vghfjqpt0uvut6f8qzrwzpsmsdt2j37f495szca6rw
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBPNG15RGpZZTFsT01NMkRH
+        WmxmbVRROGRxYnFLNmw4YWI4ZzVTSncrbVRrClpFK1h5NnhkbGhERC9odDNxUzYv
+        SGJhMm0wWWw3RWtyV2k1OUZwQXlwcTAKLS0tIDFCZ0VCSXZJTkdxMUlQK0NqRjNO
+        MjJiZCs2UGlTZE5lMk9yaEdldzc1TlkKzLHs7JJ78eYxmlNzYRImLS7X1gSL7J3J
+        XtdR/9rr0CRWcdf6u1d5PZchueWup372yCFnwaz9tX3kxAKKSInKaw==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2024-09-27T19:44:12Z"
+  mac: ENC[AES256_GCM,data:FLmNjWedffhkd/x9f0PLTE9lCt8atNufV5U9qvi8feubZy+NkS/Fuy8GGqyJ8XTev1yrPgHA71SgAuPvEvO+0ajrd1muCi78Bu4otKMFOBvO+SJ3XiY7h5RzquRgZgcFM49eF12ztEs9bSAsldvypgFkK6GzrcCADDP36IMw4PE=,iv:dnXzqtNrOnmo7ns52AxrB47/PgQIjhkcse23yM5N/90=,tag:xRkJRiJHp3gdSqYN1RW5Ig==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  version: 3.9.0
