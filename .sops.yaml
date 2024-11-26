@@ -8,3 +8,7 @@ creation_rules:
     age: >-
       age1764fcxh4ea0vt0h9vghfjqpt0uvut6f8qzrwzpsmsdt2j37f495szca6rw,
       age1xpz9gr6r0ps0536whpzrpyknyr74rcfqrjmwqmtdpfmpzv6yu4csf3zlpd
+  - path_regex: .\.key$
+    age: >-
+      age1764fcxh4ea0vt0h9vghfjqpt0uvut6f8qzrwzpsmsdt2j37f495szca6rw,
+      age1xpz9gr6r0ps0536whpzrpyknyr74rcfqrjmwqmtdpfmpzv6yu4csf3zlpd
