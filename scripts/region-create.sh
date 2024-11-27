@@ -25,10 +25,15 @@ if [[ ! -f "$deploy_key_file" ]]; then
 
   ssh-keygen -t ed25519 -f "$deploy_key_file" -C "$region" -N ""
 fi
-sops --encrypt "$deploy_key_file" >"${deploy_key_file/.key/.sops.key}"
+if [[ ! -f "${deploy_key_file/.key/.sops.key}" ]]; then
+  sops --encrypt "$deploy_key_file" >"${deploy_key_file/.key/.sops.key}"
+fi
 
 # Create deploy key in the repository.
-gh repo deploy-key add --title "$region" "$deploy_key_file.pub"
+public_key=$(awk '{print $2}' <"$deploy_key_file.pub")
+if ! gh repo deploy-key list | grep -q "$public_key"; then
+  gh repo deploy-key add --title "$region" "$deploy_key_file.pub"
+fi
 
 # Generate secrets.
 talos_secret_file="configs/regions/$region/talos.secret.yaml"
@@ -37,4 +42,6 @@ if [[ ! -f "$talos_secret_file" ]]; then
 
   talosctl gen secrets --output-file="$talos_secret_file"
 fi
-sops --encrypt "$talos_secret_file" >"${talos_secret_file/secret.yaml/sops.yaml}"
+if [[ ! -f "${talos_secret_file/.secret.yaml/.sops.yaml}" ]]; then
+  sops --encrypt "$talos_secret_file" >"${talos_secret_file/.secret.yaml/.sops.yaml}"
+fi
