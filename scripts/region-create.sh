@@ -77,13 +77,24 @@ generate_sops_secret() {
 
   # Add SOPS public key to the configuration file.
   sops_config=".sops.yaml"
-
   if ! grep -cq "$sops_public_key" "$sops_config"; then
     echo "info: adding SOPS public key to configuration file: $sops_config"
 
-    # Use sed to add it after the line containing "age: >-".
-    sed -i "/age: >-/a \ \      $sops_public_key" "$sops_config"
+    # Add it after the line containing "age: >-".
+    echo "info: adding SOPS public key to configuration file: $sops_public_key"
+    sed -i "/age: >-/a \      $sops_public_key," "$sops_config"
   fi
+
+  # TODO: Isolate recipients for each region.
+
+  # Update the keys for existing secrets.
+  mapfile -t sops_files < <(find "$region_dir" -name "*.sops.*")
+  for file in "${sops_files[@]}"; do
+    sops updatekeys "$file" --yes 2>/dev/null
+  done
+
+  # Encrypt SOPS key itself.
+  sops --encrypt "$sops_secret_file" >"${sops_secret_file/.secret.agekey/.sops.agekey}"
 }
 
 generate_talos_flux_patch() {
@@ -119,9 +130,9 @@ generate_talos_flux_patch() {
 
 main() {
   preflight_checks "$@"
+  generate_sops_secret
   configure_deploy_key
   generate_talos_secrets
-  generate_sops_secret
   generate_talos_flux_patch
 }
 
