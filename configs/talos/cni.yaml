@@ -1,0 +1,8 @@
+# This disables the default CNI so
+# that we can install Cilium via flux.
+cluster:
+  network:
+    cni:
+      name: none
+  proxy:
+    disabled: true
