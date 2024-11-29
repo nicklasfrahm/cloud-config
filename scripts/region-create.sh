@@ -64,6 +64,28 @@ generate_talos_secrets() {
   fi
 }
 
+generate_sops_secret() {
+  sops_secret_file="$region_dir/sops.secret.agekey"
+
+  # Generate SOPS secret and extract public key.
+  sops_public_key=""
+  if [[ ! -f "$sops_secret_file" ]]; then
+    sops_public_key=$(age-keygen -o "$sops_secret_file" | awk '{print $2}' | tr -d '\n')
+  else
+    sops_public_key=$(grep -oE "age[a-z0-9]+" "$sops_secret_file")
+  fi
+
+  # Add SOPS public key to the configuration file.
+  sops_config=".sops.yaml"
+
+  if ! grep -cq "$sops_public_key" "$sops_config"; then
+    echo "info: adding SOPS public key to configuration file: $sops_config"
+
+    # Use sed to add it after the line containing "age: >-".
+    sed -i "/age: >-/a \ \      $sops_public_key" "$sops_config"
+  fi
+}
+
 generate_talos_flux_patch() {
   flux_dir="clusters/$region/flux-system"
   flux_components="source-controller,helm-controller,kustomize-controller,notification-controller"
@@ -84,13 +106,13 @@ generate_talos_flux_patch() {
     --export >"$flux_dir/gotk-components.yaml"
 
   # Prepare flux manifests for Talos deployment.
-  flux_manifest="$(cat "$flux_dir/gotk-components.yaml")"
-  flux_manifest+="$(cat "$flux_dir/gotk-sync.yaml")"
-  flux_manifest+="$(flux create secret git flux-system \
-    --url="$REPO_URL" \
-    --private-key-file="$region_dir/flux.id_ed25519.key" --export)"
+  flux_manifest_talos="$tmp_dir/talos.flux-system.secret.yaml"
 
-  echo "$flux_manifest" >"talos.flux-system.yaml"
+  cat "$flux_dir/gotk-components.yaml" >"$flux_manifest_talos"
+  cat "$flux_dir/gotk-sync.yaml" >>"$flux_manifest_talos"
+  flux create secret git flux-system \
+    --url="$REPO_URL" \
+    --private-key-file="$region_dir/flux.id_ed25519.key" --export >>"$flux_manifest_talos"
 
   ## TODO: Set up SOPS for flux.
 }
@@ -99,6 +121,7 @@ main() {
   preflight_checks "$@"
   configure_deploy_key
   generate_talos_secrets
+  generate_sops_secret
   generate_talos_flux_patch
 }
 
