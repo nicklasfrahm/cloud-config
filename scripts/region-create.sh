@@ -112,7 +112,7 @@ generate_talos_flux_patch() {
   mkdir -p "$flux_dir"
 
   # Configure flux components in configuration repository.
-  envsubst <"configs/flux/kustomization.tpl.yaml" >"$flux_dir/kustomization.yaml"
+  cp -f "configs/flux/kustomization.tpl.yaml" "$flux_dir/kustomization.yaml"
   envsubst <"configs/flux/gotk-sync.tpl.yaml" >"$flux_dir/gotk-sync.yaml"
   flux install \
     --components="$flux_components" \

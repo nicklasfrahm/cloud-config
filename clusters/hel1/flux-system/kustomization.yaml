@@ -157,32 +157,32 @@ patchesStrategicMerge:
     kind: Deployment
     metadata:
       name: image-reflector-controller
-    : delete
+    $patch: delete
 
   - |-
     apiVersion: apps/v1
     kind: Deployment
     metadata:
       name: image-automation-controller
-    : delete
+    $patch: delete
 
   - |-
     apiVersion: v1
     kind: Service
     metadata:
       name: notification-controller
-    : delete
+    $patch: delete
 
   - |-
     apiVersion: v1
     kind: Service
     metadata:
       name: source-controller
-    : delete
+    $patch: delete
 
   - |-
     apiVersion: v1
     kind: Service
     metadata:
       name: webhook-receiver
-    : delete
+    $patch: delete
