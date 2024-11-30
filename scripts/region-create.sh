@@ -94,7 +94,9 @@ generate_sops_secret() {
   done
 
   # Encrypt SOPS key itself.
-  sops --encrypt "$sops_secret_file" >"${sops_secret_file/.secret.agekey/.sops.agekey}"
+  if [[ ! -f "${sops_secret_file/.secret.agekey/.sops.agekey}" ]]; then
+    sops --encrypt "$sops_secret_file" >"${sops_secret_file/.secret.agekey/.sops.agekey}"
+  fi
 }
 
 generate_talos_flux_patch() {
