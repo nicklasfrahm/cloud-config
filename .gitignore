@@ -9,4 +9,6 @@ bin/
 *.agekey
 
 # Ignore unencrypted secrets.
-**/**.secret.yaml
+*.secret.*
+*.key
+!*.sops.*

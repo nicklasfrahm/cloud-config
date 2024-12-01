@@ -1,0 +1,7 @@
+machine:
+  spec:
+    kubernetes:
+      manifests:
+        flux-system:
+          data: |
+            ${FLUX_MANIFESTS}
