@@ -121,13 +121,18 @@ generate_talos_flux_patch() {
   # Prepare flux manifests for Talos deployment.
   flux_manifest_talos="$tmp_dir/talos.flux-system.secret.yaml"
 
-  cat "$flux_dir/gotk-components.yaml" >"$flux_manifest_talos"
-  cat "$flux_dir/gotk-sync.yaml" >>"$flux_manifest_talos"
-  flux create secret git flux-system \
-    --url="$REPO_URL" \
-    --private-key-file="$region_dir/flux.id_ed25519.key" --export >>"$flux_manifest_talos"
-
-  ## TODO: Set up SOPS for flux.
+  rm -rf "$flux_manifest_talos"
+  {
+    cat "$flux_dir/gotk-components.yaml" >"$flux_manifest_talos"
+    cat "$flux_dir/gotk-sync.yaml"
+    flux create secret git flux-system \
+      --url="$REPO_URL" \
+      --private-key-file="$region_dir/flux.id_ed25519.key" --export >>"$flux_manifest_talos"
+    echo "---"
+    kubectl create secret generic sops-age \
+      --from-file="$region_dir/sops.secret.agekey" \
+      --dry-run=client -o yaml >>"$flux_manifest_talos"
+  } >>"$flux_manifest_talos"
 }
 
 main() {
