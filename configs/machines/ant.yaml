@@ -1,0 +1,11 @@
+apiVersion: cloud.nicklasfrahm.dev/v1alpha1
+kind: Machine
+metadata:
+  name: ant
+  annotations:
+    cloud.nicklasfrahm.dev/vendor: "friendlyelec"
+    cloud.nicklasfrahm.dev/model: "nanopi-r5s"
+spec:
+  interfaces:
+    eth0:
+      mac: 32:de:fa:97:71:4f
